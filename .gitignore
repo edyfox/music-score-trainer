@@ -1,0 +1,6 @@
+__pycache__/
+*.ly
+*.midi
+*.mp3
+*.pdf
+*.wav

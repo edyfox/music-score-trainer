@@ -39,12 +39,12 @@ recognition and sight-reading skills.
      ```bash
      lilypond key_c.ly
      ```
-   - This command will generate `key_c.pdf` and `key_c.mid` files.
+   - This command will generate `key_c.pdf` and `key_c.midi` files.
 
 4. **Convert MIDI to Audio:**
    - Use TiMidity++ to convert the MIDI file to a WAV audio file:
      ```bash
-     timidity -Ow key_c.mid
+     timidity -Ow key_c.midi
      ```
    - This command will generate a `key_c.wav` file.
 

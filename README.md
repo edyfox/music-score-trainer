@@ -10,6 +10,7 @@ recognition and sight-reading skills.
 - Ideal for practicing note recognition and improving sight-reading skills.
 
 ## Dependencies
+- [Python 3](https://www.python.org/) - required to run the script.
 - [LilyPond](http://lilypond.org/) - used to generate PDF and MIDI files.
 - [TiMidity++](https://timidity.sourceforge.net/) - used to convert MIDI files
   to audio.

@@ -75,17 +75,17 @@ key_g = MusicNotes(
 
 key_f = MusicNotes(
     "F Major / D minor", [
-        "g", "a", "bes", "c'", "d'", "e'", "f'",
-        "g'", "a'", "bes'", "c''", "d''", "e''", "f''",
-        "g''", "a''", "bes''", "c'''",
+        "g", "a", "bes", "c'", "d'", "e'",
+        "f'", "g'", "a'", "bes'", "c''", "d''", "e''",
+        "f''", "g''", "a''", "bes''", "c'''",
     ], [
         "aes", "ces'", "des'", "ees'",
         "ges'", "aes'", "ces''", "des''", "ees''",
         "ges''", "aes''", "ces'''",
 
-        "gis", "b", "cis'", "dis'", "fis'",
-        "gis'", "b'", "cis''", "dis''", "fis''",
-        "gis''", "b''",
+        "gis", "b", "cis'", "dis'",
+        "fis'", "gis'", "b'", "cis''", "dis''",
+        "fis''", "gis''", "b''",
     ], [
         "c,", "d,", "e,",
         "f,", "g,", "a,", "bes,", "c", "d", "e",

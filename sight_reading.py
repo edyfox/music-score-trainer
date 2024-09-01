@@ -11,9 +11,9 @@ if key.name[0].isalpha():
 else:
     key_text = key.name[:2]
 
-if key_text[0] == '\u266d':  # Flat symbol (♭)
+if key_text[0] == '\u266d':  # Flat symbol
     key_name = key_text[1].lower() + "es"
-elif key_text[0] == '\u266f':  # Sharp symbol (♯)
+elif key_text[0] == '\u266f':  # Sharp symbol
     key_name = key_text[1].lower() + "is"
 else:
     key_name = key_text[0].lower()

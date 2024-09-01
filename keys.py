@@ -137,6 +137,36 @@ key_d = MusicNotes(
         "dis'", "eis'",
     ])
 
+key_bes = MusicNotes(
+    "\u266dB Major / G minor", [
+        "g", "a",
+        "bes", "c'", "d'", "ees'", "f'", "g'", "a'",
+        "bes'", "c''", "d''", "ees''", "f''", "g''", "a''",
+        "bes''", "c'''",
+    ], [
+        "aes",
+        "ces'", "des'", "fes'", "ges'", "aes'",
+        "ces''", "des''", "fes''", "ges''", "aes''",
+        "ces'''",
+
+        "gis",
+        "b", "cis'", "e'", "fis'", "gis'",
+        "b'", "cis''", "e''", "fis''", "gis''",
+        "b''",
+    ], [
+        "c,", "d,", "ees,", "f,", "g,", "a,",
+        "bes,", "c", "d", "ees", "f", "g", "a",
+        "bes", "c'", "d'", "ees'", "f'",
+    ], [
+        "des,", "fes,", "ges,", "aes,",
+        "ces", "des", "fes", "ges", "aes",
+        "ces'", "des'", "fes'",
+
+        "cis,", "e,", "fis,", "gis,",
+        "b,", "cis", "e", "fis", "gis",
+        "b", "cis'", "e'",
+    ])
+
 key_a = MusicNotes(
     "A Major / \u266fF minor", [
         "gis",

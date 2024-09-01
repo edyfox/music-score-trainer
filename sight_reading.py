@@ -6,8 +6,18 @@ import random
 key = key_c
 shuffle = True
 
-key_name = key.name[0].lower()
-title = "Key of " + key.name[0]
+if key.name[0].isalpha():
+    key_text = key.name[0].lower()
+else:
+    key_text = key.name[:2]
+
+if key_text[0] == '\u266d':  # Flat symbol (♭)
+    key_name = key_text[1].lower() + "es"
+elif key_text[0] == '\u266f':  # Sharp symbol (♯)
+    key_name = key_text[1].lower() + "is"
+else:
+    key_name = key_text[0].lower()
+title = "Key of " + key_text
 subtitle = key.name
 
 treble_notes = (key.treble_scale_notes() * (3 if shuffle else 1) +

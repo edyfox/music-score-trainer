@@ -41,7 +41,7 @@ while treble_notes or bass_notes:
         choice = 'treble'
     else:
         choice = 'bass'
-    
+
     if choice == 'treble':
         treble_score.append(treble_notes.pop(0))
         bass_score.append("r")
@@ -67,7 +67,7 @@ print(r"  \time 4/4""")
 for item in treble_score:
     print(f"  {item}")
 
-print(r"""  \bar "|." 
+print(r"""  \bar "|."
 }
 lower = {
   \clef bass""")
@@ -77,7 +77,7 @@ print(r"  \time 4/4""")
 for item in bass_score:
     print(f"  {item}")
 
-print(r"""  \bar "|." 
+print(r"""  \bar "|."
 }
 \score {
   \new PianoStaff

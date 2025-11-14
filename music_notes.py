@@ -9,7 +9,7 @@ class MusicNotes:
                 clef.
         bass (ClefNotes): An instance of the ClefNotes class for the bass clef.
     """
-    
+
     class ClefNotes:
         """
         Inner class to represent notes for a clef.
@@ -73,7 +73,7 @@ class MusicNotes:
         self.name = name
         self.treble = self.ClefNotes(treble_scale_notes, treble_altered_notes)
         self.bass = self.ClefNotes(bass_scale_notes, bass_altered_notes)
-    
+
     def treble_scale_notes(self):
         """
         Retrieves the treble clef scale notes.

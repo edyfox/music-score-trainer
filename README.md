@@ -85,9 +85,34 @@ Each clef should include the following lists:
 1. **Scale Notes:** this list contains all the notes in the scale for the
    specified key. For each key, the scale notes are: do, re, mi, fa, so, la, ti.
 2. **Altered Notes:** This list includes all sharp-spelt and flat-spelt notes
-   for the key.
+   for the key. These are the chromatic notes *not* in the diatonic scale.
    - Sharp-spelt notes: di, ri, fi, si, li
    - Flat-spelt notes: ra, me, se, le, te
+
+#### Key Ordering
+
+The order of keys in `keys.py` should be: 0 sharps/flats (C), 1 sharp (G),
+1 flat (F), 2 sharps (D), 2 flats (Bb), and so on.
+
+#### Formatting Scale Notes
+
+- The list should contain all notes of the key's major scale that fall within
+  the specified range for the clef.
+- Each new octave of the scale should start on a new line, beginning with the
+  tonic (e.g., `aes`, `aes'`, `aes''`).
+- The very first line may contain notes leading up to the first tonic if the
+  range starts below it.
+
+#### Formatting Altered Notes
+
+- The notes should be grouped by spelling: flat-spelt notes first, then
+  sharp-spelt notes, separated by a blank line.
+- Within each spelling group, the notes are grouped by solfege pairs/triplets
+  and by octave.
+  - **Flat-spelt:** `ra, me` on one line, and `se, le, te` on the next.
+  - **Sharp-spelt:** `di, ri` on one line, and `fi, si, li` on the next.
+- This grouping pattern repeats for each octave.
+- If a note in a group is out of range, the group is truncated for that octave.
 
 ### Steps to Add New Keys
 

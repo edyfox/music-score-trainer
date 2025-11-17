@@ -7,7 +7,7 @@ key = key_c
 shuffle = True
 
 if key.name[0].isalpha():
-    key_text = key.name[0].lower()
+    key_text = key.name[0]
 else:
     key_text = key.name[:2]
 

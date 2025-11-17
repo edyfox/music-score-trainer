@@ -61,7 +61,7 @@ print(r"""
 }
 upper = {
   \clef treble""")
-print("  \key " + key_name + " \major")
+print(r"  \key " + key_name + r" \major")
 print(r"  \time 4/4""")
 
 for item in treble_score:
@@ -71,7 +71,7 @@ print(r"""  \bar "|."
 }
 lower = {
   \clef bass""")
-print("  \key " + key_name + " \major")
+print(r"  \key " + key_name + r" \major")
 print(r"  \time 4/4""")
 
 for item in bass_score:

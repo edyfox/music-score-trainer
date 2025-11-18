@@ -19,41 +19,59 @@ recognition and sight-reading skills.
 
 ## Usage
 
-1. **Modify the Script:**
-   - Open `sight_reading.py` in a text editor.
-   - Locate the line `key = key_c` and change it to the key you want to
-     practice.
-     - For example, `key = key_a` for the key of A.
-     - Sharp keys are named with an `is` suffix (e.g., key F sharp is
-       `key_fis`).
-     - Flat keys are named with an `es` suffix (e.g., key B flat is `key_bes`).
+1. Command-line usage
 
-2. **Generate the LilyPond File:**
-   - Run the script and redirect the output to a `.ly` file:
-     ```bash
-     python3 sight_reading.py > key_c.ly
-     ```
-   - Replace `key_c.ly` with the desired key name.
+   The script accepts command-line options to select the key and to
+   enable/disable shuffling of the generated notes. Use the `--key` option
+   to choose which `key_` definition from `keys.py` will be used.
 
-3. **Create the Music Score and MIDI File:**
+   - `--key=<name>`: Choose the key to generate. For example `--key=c` will use
+     `key_c` as defined in `keys.py`. Valid values correspond to the
+     `key_` variables (for example: `c`, `g`, `f`, `d`, `bes`, `a`, `ees`,
+     `e`, `aes`, `b`, etc.).
+   - `--shuffle` / `--no-shuffle`: Control whether notes are shuffled. Use
+     `--no-shuffle` to produce a deterministic, unshuffled sequence.
+
+   Example: generate LilyPond for C major (shuffled):
+
+   ```bash
+   python3 sight_reading.py --key=c > key_c.ly
+   ```
+
+   Example: generate LilyPond for A major without shuffling:
+
+   ```bash
+   python3 sight_reading.py --key=a --no-shuffle > key_a.ly
+   ```
+
+2. Create the Music Score and MIDI File
+
    - Use LilyPond to generate the PDF and MIDI files:
+
      ```bash
      lilypond key_c.ly
      ```
+
    - This command will generate `key_c.pdf` and `key_c.midi` files.
 
-4. **Convert MIDI to Audio:**
+3. Convert MIDI to Audio
+
    - Use TiMidity++ to convert the MIDI file to a WAV audio file:
+
      ```bash
      timidity -Ow key_c.midi
      ```
+
    - This command will generate a `key_c.wav` file.
 
-5. **Compress the Audio File:**
+4. Compress the Audio File
+
    - Use LAME to compress the WAV file to MP3 format:
+
      ```bash
      lame key_c.wav
      ```
+
    - This command will generate a `key_c.mp3` file.
 
 After completing these steps, you will have a PDF music score and an MP3 audio

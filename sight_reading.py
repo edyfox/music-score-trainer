@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
-from key_generator import key_c, key_g, key_f, key_d, key_bes, key_a, key_ees, key_e, key_aes, key_b
 import random
+import argparse
+import sys
+
+from key_generator import key_c, key_g, key_f, key_d, key_bes, key_a, key_ees, key_e, key_aes, key_b
 
 def generate_sight_reading_exercise(key, shuffle):
     """
@@ -97,7 +100,41 @@ def main():
     """
     Main function to generate the sight-reading exercise.
     """
-    generate_sight_reading_exercise(key_c, True)
+    parser = argparse.ArgumentParser(description="Generate a sight-reading exercise.")
+    parser.add_argument("--key", dest="key", default="c",
+                        help="Key to generate: c, g, f, d, bes, a, ees, e, aes, b (defaults to c)")
+    # allow explicit enable/disable of shuffle
+    parser.add_argument("--shuffle", dest="shuffle", action=argparse.BooleanOptionalAction,
+                        default=True,
+                        help="Enable or disable shuffling of notes (default: enabled)")
+
+    args = parser.parse_args()
+
+    # Map common names to the imported key objects
+    key_map = {
+        "c": key_c,
+        "g": key_g,
+        "f": key_f,
+        "d": key_d,
+        "bes": key_bes,
+        "bb": key_bes,
+        "a": key_a,
+        "ees": key_ees,
+        "eb": key_ees,
+        "e": key_e,
+        "aes": key_aes,
+        "ab": key_aes,
+        "b": key_b,
+    }
+
+    key_name = args.key.lower()
+    if key_name not in key_map:
+        print(f"Unknown key '{args.key}'. Valid keys: {', '.join(sorted(key_map.keys()))}")
+        sys.exit(2)
+
+    selected_key = key_map[key_name]
+
+    generate_sight_reading_exercise(selected_key, args.shuffle)
 
 if __name__ == "__main__":
     main()

@@ -1,83 +1,86 @@
 #!/usr/bin/env python3
 
-from keys import *
+from key_generator import key_c, key_g, key_f, key_d, key_bes, key_a, key_ees, key_e, key_aes, key_b
 import random
 
-key = key_c
-shuffle = True
-
-if key.name[0].isalpha():
-    key_text = key.name[0]
-else:
-    key_text = key.name[:2]
-
-if key_text[0] == '\u266d':  # Flat symbol
-    key_name = key_text[1].lower() + "es"
-elif key_text[0] == '\u266f':  # Sharp symbol
-    key_name = key_text[1].lower() + "is"
-else:
-    key_name = key_text[0].lower()
-title = "Key of " + key_text
-subtitle = key.name
-
-treble_notes = (key.treble_scale_notes() * (3 if shuffle else 1) +
-        key.treble_altered_notes())
-bass_notes = (key.bass_scale_notes() * (3  if shuffle else 1) +
-        key.bass_altered_notes())
-
-# Shuffle both lists
-if shuffle:
-    random.shuffle(treble_notes)
-    random.shuffle(bass_notes)
-
-treble_score = []
-bass_score = []
-
-while treble_notes or bass_notes:
-    # Choose randomly from which list to pop, with consideration for empty lists
-    if treble_notes and bass_notes:
-        choice = random.choice(['treble', 'bass']) if shuffle else 'treble'
-    elif treble_notes:
-        choice = 'treble'
+def generate_sight_reading_exercise(key, shuffle):
+    """
+    Generates a LilyPond score for a sight-reading exercise.
+    """
+    if key.name[0].isalpha():
+        key_text = key.name[0]
     else:
-        choice = 'bass'
+        key_text = key.name[:2]
 
-    if choice == 'treble':
-        treble_score.append(treble_notes.pop(0))
-        bass_score.append("r")
+    if key_text[0] == '\u266d':  # Flat symbol
+        key_name = key_text[1].lower() + "es"
+    elif key_text[0] == '\u266f':  # Sharp symbol
+        key_name = key_text[1].lower() + "is"
     else:
-        treble_score.append("r")
-        bass_score.append(bass_notes.pop(0))
+        key_name = key_text[0].lower()
+    title = "Key of " + key_text
+    subtitle = key.name
 
-treble_score[0] = treble_score[0] + "1"
-bass_score[0] = bass_score[0] + "1"
+    treble_notes = (key.treble_scale_notes() * (3 if shuffle else 1) +
+            key.treble_altered_notes())
+    bass_notes = (key.bass_scale_notes() * (3  if shuffle else 1) +
+            key.bass_altered_notes())
 
-print(r"""\version "2.24.3"
+    # Shuffle both lists
+    if shuffle:
+        random.shuffle(treble_notes)
+        random.shuffle(bass_notes)
+
+    treble_score = []
+    bass_score = []
+
+    while treble_notes or bass_notes:
+        # Choose randomly from which list to pop, with consideration for empty lists
+        if treble_notes and bass_notes:
+            choice = random.choice(['treble', 'bass']) if shuffle else 'treble'
+        elif treble_notes:
+            choice = 'treble'
+        else:
+            choice = 'bass'
+
+        if choice == 'treble':
+            treble_score.append(treble_notes.pop(0))
+            bass_score.append("r")
+        else:
+            treble_score.append("r")
+            bass_score.append(bass_notes.pop(0))
+
+    if treble_score:
+        treble_score[0] = treble_score[0] + "1"
+    if bass_score:
+        bass_score[0] = bass_score[0] + "1"
+
+    print(r"""\version "2.24.3"
 \header {""")
-print('  title = "' + title + '"')
-print('  subtitle = "' + subtitle + '"')
-print(r"""
+    print('  title = "' + title + '"')
+    print('  subtitle = "' + subtitle + '"')
+    print(r"""
   tagline = ""
 }
 upper = {
   \clef treble""")
-print(r"  \key " + key_name + r" \major")
-print(r"  \time 4/4""")
+    print(r"  \key " + key_name + r" \major")
+    print(r"  \time 4/4""")
 
-for item in treble_score:
-    print(f"  {item}")
+    for item in treble_score:
+        print(f"  {item}")
 
-print(r"""  \bar "|."
+    print(r"""  \bar "|."
 }
 lower = {
   \clef bass""")
-print(r"  \key " + key_name + r" \major")
-print(r"  \time 4/4""")
+    print(r"  \key " + key_name + r" \major")
+    print(r"  \time 4/4""")
 
-for item in bass_score:
-    print(f"  {item}")
+    for item in bass_score:
+        print(f"  {item}")
 
-print(r"""  \bar "|."
+    print(r"""  \bar "|."
 }
 \score {
   \new PianoStaff
@@ -89,3 +92,12 @@ print(r"""  \bar "|."
   \midi { }
 }
 """)
+
+def main():
+    """
+    Main function to generate the sight-reading exercise.
+    """
+    generate_sight_reading_exercise(key_c, True)
+
+if __name__ == "__main__":
+    main()

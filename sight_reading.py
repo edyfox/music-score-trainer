@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from key_generator import key_c
+from key_generator import key_c, key_g, key_f, key_d, key_bes, key_a, key_ees, key_e, key_aes, key_b
 import random
 
 def generate_sight_reading_exercise(key, shuffle):

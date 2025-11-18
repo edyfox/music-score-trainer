@@ -235,3 +235,14 @@ key_b = make_key(
         {"b": "is", "c": "isis", "e": "is", "f": "isis", "g": "isis"},
     ]
 )
+
+key_des = make_key(
+    "\u266dD Major / \u266dB minor",
+    sig={"b": "es", "e": "es", "a": "es", "d": "es", "g": "es"},
+    accidentals=[
+        # ra, me, se, le, te
+        {"e": "eses", "f": "es", "a": "eses", "b": "eses", "c": "es"},
+        # di, ri, fi, si, li
+        {"d": "", "e": "", "g": "", "a": "", "b": ""},
+    ]
+)

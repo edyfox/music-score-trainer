@@ -4,7 +4,7 @@ import random
 import argparse
 import sys
 
-from key_generator import key_c, key_g, key_f, key_d, key_bes, key_a, key_ees, key_e, key_aes, key_b, key_des
+from key_generator import key_c, key_g, key_f, key_d, key_bes, key_a, key_ees, key_e, key_aes, key_b, key_des, key_fis
 
 def generate_sight_reading_exercise(key, shuffle):
     """
@@ -102,7 +102,7 @@ def main():
     """
     parser = argparse.ArgumentParser(description="Generate a sight-reading exercise.")
     parser.add_argument("--key", dest="key", default="c",
-                        help="Key to generate: c, g, f, d, bes, a, ees, e, aes, b, des (defaults to c)")
+                        help="Key to generate: c, g, f, d, bes, a, ees, e, aes, b, des, fis (defaults to c)")
     # allow explicit enable/disable of shuffle
     parser.add_argument("--shuffle", dest="shuffle", action=argparse.BooleanOptionalAction,
                         default=True,
@@ -127,6 +127,8 @@ def main():
         "b": key_b,
         "des": key_des,
         "db": key_des,
+        "fis": key_fis,
+        "f#": key_fis,
     }
 
     key_name = args.key.lower()

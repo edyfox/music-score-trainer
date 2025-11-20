@@ -246,3 +246,14 @@ key_des = make_key(
         {"d": "", "e": "", "g": "", "a": "", "b": ""},
     ]
 )
+
+key_fis = make_key(
+    "\u266fF Major / \u266fD minor",
+    sig={"f": "is", "c": "is", "g": "is", "d": "is", "a": "is", "e": "is"},
+    accidentals=[
+        # ra, me, se, le, te
+        {"g": "", "a": "", "c": "", "d": "", "e": ""},
+        # di, ri, fi, si, li
+        {"f": "isis", "g": "isis", "b": "is", "c": "isis", "d": "isis"},
+    ]
+)

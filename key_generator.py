@@ -257,3 +257,14 @@ key_fis = make_key(
         {"f": "isis", "g": "isis", "b": "is", "c": "isis", "d": "isis"},
     ]
 )
+
+key_ges = make_key(
+    "\u266dG Major / \u266dE minor",
+    sig={"b": "es", "e": "es", "a": "es", "d": "es", "g": "es", "c": "es"},
+    accidentals=[
+        # ra, me, se, le, te
+        {"a": "eses", "b": "eses", "d": "eses", "e": "eses", "f": "es"},
+        # di, ri, fi, si, li
+        {"g": "", "a": "", "c": "", "d": "", "e": ""},
+    ]
+)

@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# run.sh
+# build.sh
 # Iterate through keys defined in key_generator.py, generate LilyPond (.ly),
 # then produce PDF/MIDI (via lilypond) and WAV/MP3 (via timidity + lame).
-
 
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT_DIR"
@@ -15,7 +14,7 @@ if [ ! -f key_generator.py ]; then
   exit 1
 fi
 
-KEYS=$(grep -oE 'key_[A-Za-z]+' key_generator.py 2>/dev/null | sort -u | sed 's/^key_//') || true
+KEYS=$(grep -E '^key_[a-z]+ = make_key' key_generator.py 2>/dev/null | cut -d' ' -f1 | sed 's/^key_//' | sort -u) || true
 KEYS=$(echo "$KEYS" | xargs) || true
 if [ -z "$KEYS" ]; then
   echo "No keys found in key_generator.py (looking for variables named key_*)"
@@ -25,7 +24,7 @@ fi
 echo "Found keys: $KEYS"
 
 for cmd in python3 lilypond timidity lame; do
-  if ! command -v "$cmd" >/dev/null 2>&1; then
+  if ! command -v "$cmd" > /dev/null 2>&1; then
     echo "Warning: $cmd not found in PATH; some steps may be skipped."
   fi
 done
@@ -45,7 +44,7 @@ for k in $KEYS; do
   fi
 
   echo "Running lilypond to create PDF & MIDI"
-  if ! lilypond --version >/dev/null 2>&1; then
+  if ! lilypond --version > /dev/null 2>&1; then
     echo "lilypond not available; skipping lilypond step for $k"
     continue
   fi
@@ -60,7 +59,7 @@ for k in $KEYS; do
     continue
   fi
 
-  if command -v timidity >/dev/null 2>&1; then
+  if command -v timidity > /dev/null 2>&1; then
     echo "Converting MIDI -> WAV: $midi -> $wav"
     if ! timidity -Ow -o "$wav" "$midi"; then
       echo "timidity failed for $midi"
@@ -71,7 +70,7 @@ for k in $KEYS; do
     continue
   fi
 
-  if command -v lame >/dev/null 2>&1; then
+  if command -v lame > /dev/null 2>&1; then
     echo "Encoding WAV -> MP3: $wav -> $mp3"
     if ! lame -V2 "$wav" "$mp3"; then
       echo "lame failed for $wav"
